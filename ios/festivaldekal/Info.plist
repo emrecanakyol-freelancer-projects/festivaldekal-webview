@@ -53,12 +53,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSUserTrackingUsageDescription</key>
+    <string>Bu uygulama, kullanıcı deneyimini geliştirmek ve hizmetlerimizi optimize etmek amacıyla cihazınızın benzersiz tanımlayıcılarını kullanabilir. Bu bilgiler kesinlikle gizli tutulacak ve üçüncü şahıslarla veya reklam ortaklarıyla paylaşılmayacaktır.</string>
 </dict>
 </plist>

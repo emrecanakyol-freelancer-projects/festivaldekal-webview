@@ -9,12 +9,14 @@ import {
 import {WebView} from 'react-native-webview';
 import SplashScreen from 'react-native-splash-screen';
 import {OneSignal} from 'react-native-onesignal';
+import {PERMISSIONS, RESULTS, check, request} from 'react-native-permissions';
 
 const App = () => {
   const [refresherEnabled, setEnableRefresher] = useState(true);
   const webViewRef: any = useRef();
   const [canGoBack, setCanGoBack] = useState(false);
-  const oneSignalID = Platform.OS === "ios" ? "1196c18d-f5ad-45b8-baef-ef3c090c20bb" : ""
+  const oneSignalID =
+    Platform.OS === 'ios' ? '1196c18d-f5ad-45b8-baef-ef3c090c20bb' : '';
 
   const handleBack = useCallback(() => {
     if (canGoBack && webViewRef.current) {
@@ -34,6 +36,10 @@ const App = () => {
     }
   };
 
+  const requestPermissionTransparency = async () => {
+    return await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+  };
+
   useEffect(() => {
     OneSignal.initialize(oneSignalID);
     OneSignal.Notifications.requestPermission(true);
@@ -44,6 +50,7 @@ const App = () => {
 
   useEffect(() => {
     SplashScreen.hide();
+    requestPermissionTransparency();
     BackHandler.addEventListener('hardwareBackPress', handleBack);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBack);
