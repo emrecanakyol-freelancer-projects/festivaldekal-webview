@@ -5,6 +5,7 @@ import {
   ScrollView,
   BackHandler,
   Platform,
+  Linking,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import SplashScreen from 'react-native-splash-screen';
@@ -86,6 +87,36 @@ const App = () => {
           cacheEnabled
           allowsFullscreenVideo
           setBuiltInZoomControls
+          onShouldStartLoadWithRequest={request => {
+            const {url} = request;
+            if (url.includes('tel:')) {
+              Linking.openURL(url);
+              // request.url && webViewRef.current.goBack();
+              return false;
+            } else if (url.includes('wa.me/')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('www.facebook.com')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('twitter.com')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('www.linkedin.com')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('pinterest.com')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('telegram.me')) {
+              Linking.openURL(url);
+              return false;
+            } else if (url.includes('www.youtube.com')) {
+              Linking.openURL(url);
+              return false;
+            }
+            return true;
+          }}
         />
       </ScrollView>
     </SafeAreaView>
